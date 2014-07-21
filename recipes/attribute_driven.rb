@@ -1,11 +1,12 @@
 # treat the graphite plugin specially: set address from search or attributes
+
 if node["collectd"]["plugins"].key?("write_graphite")
   if node["collectd"]["graphite_ipaddress"].empty?
     if Chef::Config[:solo]
       Chef::Application.fatal!("Graphite plugin enabled but no Graphite server configured.")
     end
 
-    graphite_server_results = search(:node, #{node["collectd"]["graphite_search"]})
+    graphite_server_results = search(:node, node["collectd"]["graphite_search"])
 
     if graphite_server_results.empty?
       Chef::Application.fatal!("Graphite plugin enabled but no Graphite server found.")
