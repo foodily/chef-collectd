@@ -5,7 +5,7 @@ if node["collectd"]["plugins"].key?("write_graphite")
       Chef::Application.fatal!("Graphite plugin enabled but no Graphite server configured.")
     end
 
-    graphite_server_results = search(:node, "#{node["collectd"]["graphite_search"]}")
+    graphite_server_results = search(:node, #{node["collectd"]["graphite_search"]})
 
     if graphite_server_results.empty?
       Chef::Application.fatal!("Graphite plugin enabled but no Graphite server found.")

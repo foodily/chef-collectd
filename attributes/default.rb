@@ -11,4 +11,4 @@ default["collectd"]["graphite_ipaddress"] = ""
 #allow for port override
 default["collectd"]["graphite_port"]      = "2003"
 #override  graphite search to allow for shared logging environment
-default["collectd"]["graphite_search"] = 'roles:#{node["collectd"]["graphite_role"]} AND chef_environment:#{node.chef_environment}'
+default["collectd"]["graphite_search"] = "roles:#{node["collectd"]["graphite_role"]} AND chef_environment:#{node.chef_environment}"
