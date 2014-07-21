@@ -33,6 +33,8 @@ work done by [coderanger](https://github.com/coderanger/chef-collectd) and
   search.
 * `node["collectd"]["graphite_ipaddress"]` – IP address to Graphite server if
   you're trying to target one that isn't searchable.
+* `node["collectd"]["graphite_port"]` –  Port that Graphite server is listening on 
+* `node["collectd"]["graphite_search"]` –  Override if you need to search for Graphite server in a different environment.
 * `node["collectd"]["packages"]` – List of collectd packages.
 
 ## Recipes
