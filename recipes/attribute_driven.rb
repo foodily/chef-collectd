@@ -8,8 +8,8 @@ if node["collectd"]["plugins"].key?("write_graphite")
 
 Chef::Log.debug ("Graphite Search: ||"+ node.collectd.graphite_search + "||")
 
-    graphite_server_results = search(:node, " #{node["collectd"]["graphite_search"]}" )
-
+#    graphite_server_results = search(:node, " #{node["collectd"]["graphite_search"]}" )
+    graphite_server_results = search(:node, "roles:#{node["collectd"]["graphite_role"]} AND chef_environment:#{node.chef_environment}”)
     if graphite_server_results.empty?
       Chef::Application.fatal!("Graphite plugin enabled but no Graphite server found.")
     else
