@@ -4,7 +4,8 @@ if node["collectd"]["plugins"].key?("write_graphite")
     if Chef::Config[:solo]
       Chef::Application.fatal!("Graphite plugin enabled but no Graphite server configured.")
     end
-    graphite_server_results = search(:node, "roles:#{node["collectd"]["graphite_role"]} AND chef_environment:#{node.chef_environment}")
+
+    graphite_server_results = search(:node, "roles:#{node["collectd"]["graphite_role"]} AND chef_environment:#{graphite_env}")
 
     if graphite_server_results.empty?
       Chef::Application.fatal!("Graphite plugin enabled but no Graphite server found.")
@@ -15,7 +16,7 @@ if node["collectd"]["plugins"].key?("write_graphite")
     node.default["collectd"]["plugins"]["write_graphite"]["config"]["Host"] = node["collectd"]["graphite_ipaddress"]
   end
 
-  node.default["collectd"]["plugins"]["write_graphite"]["config"]["Port"] = 2003
+  node.default["collectd"]["plugins"]["write_graphite"]["config"]["Port"] = node["collectd"]["graphite_port"]
 end
 
 # flush all of configuration to conf.d/

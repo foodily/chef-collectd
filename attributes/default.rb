@@ -8,3 +8,7 @@ default["collectd"]["name"]               = node["fqdn"]
 default["collectd"]["plugins"]            = Mash.new
 default["collectd"]["graphite_role"]      = "graphite"
 default["collectd"]["graphite_ipaddress"] = ""
+#allow for port override
+default["collectd"]["graphite_port"]      = "2003"
+#override  graphite environment for shared logging across environments.
+default["collectd"]["graphite_environment"] = node.chef_environment
